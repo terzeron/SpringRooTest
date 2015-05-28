@@ -1,0 +1,45 @@
+// Spring Roo 1.3.1.RELEASE [rev f4f5256] log opened at 2015-03-03 11:41:22
+project --topLevelPackage com.springsource.roo.pizzashop
+jpa setup --provider HIBERNATE --database HYPERSONIC_IN_MEMORY
+// Spring Roo 1.3.1.RC1 [rev 4877cfb] log opened at 2015-03-03 11:42:27
+// Spring Roo 1.3.1.RC1 [rev 4877cfb] log closed at 2015-03-03 11:42:53
+entity jpa --class ~.domain.Topping --testAutomatically
+field string --fieldName name --notNull --sizeMin 2
+field set --fieldName toppings --type ~.domain.Topping
+hint
+hint fields
+hint entity
+hint entities
+entity jpa --class ~.domain.Base --testAutomatically
+field string --fieldName name --notNull --sizeMin 2
+entity jpa --class ~.domain.Pizza --testAutomatically 
+field string --fieldName name --notNull --sizeMin 2
+field number --fieldName price --type java.lang.Float
+field set --fieldName toppings --type ~.domain.Topping
+field reference --fieldName base --type ~.domain.Base
+entity jpa --class ~.domain.PizzaOrder --testAutomatically 
+field string --fieldName name --notNull --sizeMin 2
+field string --fieldName address --sizeMax 30
+field number --fieldName total --type java.lang.Float 
+field date --fieldName deliveryDate --type java.util.Date
+field set --fieldName pizzas --type ~.domain.Pizza
+perform tests
+perform eclipse
+perform eclipse
+perform eclipse
+web mvc setup
+// Spring Roo 1.3.1.RC1 [rev 4877cfb] log opened at 2015-03-03 11:59:08
+web mvc all --package ~.web
+// Spring Roo 1.3.1.RC1 [rev 4877cfb] log closed at 2015-03-03 11:59:44
+// Spring Roo 1.3.1.RC1 [rev 4877cfb] log opened at 2015-03-03 12:03:01
+perform package
+// Spring Roo 1.3.1.RC1 [rev 4877cfb] log closed at 2015-03-03 12:09:15
+security setup
+selenium test --controller ~.web.ToppingController
+selenium test --controller ~.web.BaseController
+selenium test --controller ~.web.PizzaController
+selenium test --controller ~.web.PizzaOrderController
+backup
+perform package
+exit
+// Spring Roo 1.3.1.RELEASE [rev f4f5256] log closed at 2015-03-03 14:13:28
